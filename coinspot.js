@@ -54,13 +54,11 @@ function coinspot(key, secret) {
 		req.end();
 	}
 
+
+	// Full access endpoints (Implement relevant FA endpoints below)
 	// full access status check
 	self.status_fa = function(callback){
 		request(APIV2+'/status', callback);
-	}
-	// read only status check
-	self.status_ro = function(callback) {
-		request(APIV2+'/ro/status', callback)
 	}
 
 	self.quotebuy = function(cointype, amount, callback) {
@@ -73,18 +71,6 @@ function coinspot(key, secret) {
 
 	self.quoteswap = function(cointypesell, cointypebuy, amount, callback) {
 		request(APIV2+'/quote/sell/now', {cointype:cointype, amount:amount}, callback);
-	}
-
-	self.mybalances = function(callback) {
-		request(APIV2+'/my/balances', {}, callback);
-	}
-
-	self.open_market_orders = function(cointype, callback) {
-		request(APIV2+'/my/orders/market/open', {cointype:cointype}, callback);
-	}
-
-	self.completed_orders = function(callback) {
-		request(APIV2+'/ro/my/orders/completed', {}, callback);
 	}
 
 	self.market_limit_buy = function(cointype, amount, rate, callback) {
@@ -117,8 +103,28 @@ function coinspot(key, secret) {
 		request(APIV2 + '/my/sell/cancel', data, callback)
 	}
 
+	
+
+	// Read Only endpoints (implement relevant RO endpoints below)
+	// read only status check
+	self.status_ro = function(callback) {
+		request(APIV2_RO+'/status', callback)
+	}
+
+	self.mybalances = function(callback) {
+		request(APIV2_RO+'/my/balances', {}, callback);
+	}
+
+	self.open_market_orders = function(cointype, callback) {
+		request(APIV2_RO+'/my/orders/market/open', {cointype:cointype}, callback);
+	}
+
+	self.completed_orders = function(callback) {
+		request(APIV2_RO+'/my/orders/completed', {}, callback);
+	}
+
 	self.get_sendreceives = function(callback) {
-		request(APIV2 + '/ro/my/sendreceive')
+		request(APIV2_RO+'/my/sendreceive', callback)
 	}
 }
 module.exports = coinspot;
