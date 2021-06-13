@@ -1,33 +1,18 @@
-Please see https://www.coinspot.com.au/api for documentation on the CoinSpot API.
+Please see https://www.coinspot.com.au/api/v2 for documentation on the CoinSpot API v2.
 
 
 Example usage
 
 ```javascript
-var coinspot = require('coinspot-api');
+const coinspot = require('./coinspot.js')
+require('dotenv').config()
 
-var secret = ''; // insert your secret here
-var key = ''; // insert your key here
+const key = process.env.PRIVATE_KEY
+const secret = process.env.SECRET
 
 var client = new coinspot(key, secret);
 
-client.orders('LTC', function(e, data) {
- 	console.log(data);
-});
-
-client.myorders(function(e, data) {
- 	console.log(data);
-});
-
-client.spot(function(e, data) {
-	console.log(data);
-});
-
-client.buy('BTC', 0.3, 529, function(e, data) {
-	console.log(data);
-});
-
-client.sell('DOGE', 0.3, 0.00024, function(e, data) {
-	console.log(data);
-});
+// client.quotebuy('DOGE', 1000)
+// client.completed_orders()
+client.get_sendreceives()
 ```
