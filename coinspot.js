@@ -2,7 +2,7 @@ require('dotenv').config()
 const hmac = require('crypto').createHmac
 const https = require('https')
 
-const APIV2 = '/api/v2'
+const APIV2 = '/api/v2', APIV2_RO = '/api/v2/ro'
 
 function coinspot(key, secret) {
   	var self = this;
@@ -53,10 +53,6 @@ function coinspot(key, secret) {
 		console.log(stringmessage)
 		req.end();
 	}
-
-	// self.sendcoin 1911josh_mir@hotmail= function(cointype, amount, address, callback) {
-	// 	request(APIV2+'/my/coin/withdrawal/send', {cointype:cointype, amount:amount, address:address}, callback);
-	// }
 
 	// full access status check
 	self.status_fa = function(callback){
