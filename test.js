@@ -7,6 +7,8 @@ const secret = process.env.SECRET
 
 var client = new coinspot(key, secret);
 
-client.quotebuy('DOGE', 10)
-client.open_market_orders('BTC')
-client.get_sendreceives()
+client.status_fa()
+// client.quotebuy('DOGE', 10)
+// client.open_market_orders('BTC')
+// client.get_sendreceives()
+// client.v1_sendreceives()
