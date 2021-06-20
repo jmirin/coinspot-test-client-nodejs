@@ -127,8 +127,8 @@ function coinspot(key, secret) {
 		request(APIV2_RO+'/my/sendreceive', {}, callback)
 	}
 
-	self.v1_sendreceives = function(callback) {
-		request('/api/ro/my/sendreceive', {}, callback)
-	}
+	// self.v1_sendreceives = function(callback) {
+	// 	request('/api/ro/my/sendreceive', {}, callback)
+	// }
 }
 module.exports = coinspot;

@@ -8,4 +8,4 @@ const secret = process.env.SECRET
 var client = new coinspot(key, secret);
 
 client.status_ro()
-
+client.status_fa()

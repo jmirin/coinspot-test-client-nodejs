@@ -1,7 +1,7 @@
 Please see https://www.coinspot.com.au/api/v2 for documentation on the CoinSpot API v2.
 
 To run:
-Rename ".env.example" => ".env" and insert API key and secret.
+Rename ".env.example" => ".env" and add your API key and secret.
 
 install dependancies with npm install
 
