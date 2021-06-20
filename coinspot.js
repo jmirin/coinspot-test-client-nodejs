@@ -73,16 +73,6 @@ function coinspot(key, secret) {
 		request(APIV2+'/quote/sell/now', {cointype:cointype, amount:amount}, callback);
 	}
 
-	self.market_limit_buy = function(cointype, amount, rate, callback) {
-		var data = {cointype:cointype, amount:amount, rate: rate}
-		request(APIV2+'/my/buy', data, callback);
-	}
-
-	self.market_limit_sell = function(cointype, amount, rate, callback) {
-		var data = {cointype:cointype, amount:amount, rate: rate}
-		request(APIV2+'/my/sell', data, callback);
-	}
-
 	self.instant_buy_now = function(cointype, amounttype, amount, rate, threshold, callback) {
 		var data = {cointype:cointype, amounttype:amounttype, amount:amount, rate:rate, threshold: threshold} 
 		request(APIV2 + '/my/buy/now', data, callback);
@@ -91,6 +81,16 @@ function coinspot(key, secret) {
 	self.instant_sell_now = function(cointype, amounttype, amount, rate, threshold, callback) {
 		var data = {cointype:cointype, amounttype:amounttype, amount:amount, rate:rate, threshold: threshold} 
 		request(APIV2 + '/my/sell/now', data, callback);
+	}
+
+	self.market_limit_buy = function(cointype, amount, rate, callback) {
+		var data = {cointype:cointype, amount:amount, rate: rate}
+		request(APIV2+'/my/buy', data, callback);
+	}
+
+	self.market_limit_sell = function(cointype, amount, rate, callback) {
+		var data = {cointype:cointype, amount:amount, rate: rate}
+		request(APIV2+'/my/sell', data, callback);
 	}
 
 	self.cancel_buy_order = function(id, callback) {
