@@ -9,3 +9,7 @@ var client = new coinspot(key, secret);
 
 client.status_ro()
 client.status_fa()
+client.quotebuy('HBAR', 'AUD', 6)
+//var rate = client.quotesell('HBAR', 'coin', 10)
+//console.log(rate)
+// client.instant_sell_now('HBAR', 'coin', 6)

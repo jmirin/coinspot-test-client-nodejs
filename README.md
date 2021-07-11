@@ -1,9 +1,9 @@
-Please see https://www.coinspot.com.au/api/v2 for documentation on the CoinSpot API v2.
+Please see https://www.coinspot.com.au/v2/api for documentation on the CoinSpot API v2.
 
 To run:
 Rename ".env.example" => ".env" and add your API key and secret.
 
-install dependancies with npm install
+install dependancies with npm install 
 
 $ npm run test
 
@@ -19,21 +19,18 @@ const secret = process.env.SECRET
 
 var client = new coinspot(key, secret);
 
-client.quotebuy('DOGE', 1000)
-// implemented in ./coinspot.js
-// self.quotebuy = function(cointype, amount, callback) {
-//     request('/api/v2/quote/buy/now', {cointype:cointype, amount:amount}, callback);
-// }
 
-client.open_market_orders('BTC')
-// implemented in ./coinspot.js
-// self.open_market_orders = function(cointype, callback) {
-//     request('api/v2/ro/my/orders/market/open', {cointype:cointype}, callback);
-// }
+client.status_fa()
+client.status_ro()
+
+//inputs: cointype, amounttype - aud/coin, amount
+client.quotebuy('DOGE', 'AUD', 10)
+//optional inputs: rate, threshold 
+client.instant_buy_now('DOGE', 'coin', 30)
+
+//inputs: coin
+client.open_market_orders('DOGE')
 
 client.get_sendreceives()
-// implemented in ./coinspot.js
-// self.get_sendreceives = function(callback) {
-//     request('api/v2/ro/my/sendreceive', callback)
-// }
+
 ```
