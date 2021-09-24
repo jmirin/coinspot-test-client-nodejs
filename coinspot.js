@@ -19,10 +19,11 @@ function coinspot(key, secret) {
 		signedMessage.update(stringmessage);
 
 		var sign = signedMessage.digest('hex');
+		// console.log(sign)
 
 		const options = {
 			rejectUnauthorized: false,
-			method: 'POST',
+			method: 'GET',
 			host: 'www.coinspot.com.au',
 			port: '',
 			path: path,
@@ -59,23 +60,28 @@ function coinspot(key, secret) {
 		request('/api/v2/status', callback);
 	}
 
+	// https://www.coinspot.com.au/v2/api#buynowquote
 	self.quotebuy = function(cointype, amounttype, amount, callback) {
 		request('/api/v2/quote/buy/now', {cointype:cointype, amounttype:amounttype, amount:amount}, callback);
 	}
 
+	// https://www.coinspot.com.au/v2/api#sellnowquote
 	self.quotesell = function(cointype, amounttype, amount, callback) {
 		request('/api/v2/quote/sell/now', {cointype:cointype, amounttype:amounttype, amount:amount}, callback);
 	}
 
+	// https://www.coinspot.com.au/v2/api#swapnowquote
 	self.quoteswap = function(cointypesell, cointypebuy, amount, callback) {
 		request('/api/v2/quote/sell/now', {cointype:cointype, amount:amount}, callback);
 	}
 
+	// https://www.coinspot.com.au/v2/api#placebuynoworder
 	self.instant_buy_now = function(cointype, amounttype, amount, rate, threshold, callback) {
 		var data = {cointype:cointype, amounttype:amounttype, amount:amount, rate:rate, threshold: threshold} 
 		request('/api/v2/my/buy/now', data, callback);
 	}
 	
+	// https://www.coinspot.com.au/v2/api#placesellorder
 	self.instant_sell_now = function(cointype, amounttype, amount, rate, threshold, callback) {
 		var data = {cointype:cointype, amounttype:amounttype, amount:amount, rate:rate, threshold: threshold} 
 		request('/api/v2/my/sell/now', data, callback);
@@ -83,21 +89,33 @@ function coinspot(key, secret) {
 		console.log(data)
 	}
 
-	self.market_limit_buy = function(cointype, amount, rate, callback) {
-		var data = {cointype:cointype, amount:amount, rate: rate}
+	// https://www.coinspot.com.au/v2/api#swapnowquote
+	self.instant_swap_now = function(cointypesell, cointypebuy, amount, rate, threshold, direction, callback) {
+		var data = {cointypesell:cointypesell, cointypebuy, amount:amount, rate:rate, threshold:threshold, direction:direction}
+		request('/api/v2/my/swap/now', data, callback);
+		console.log('instant_swap_now')
+		console.log(data)
+	}
+
+	// https://www.coinspot.com.au/v2/api#placebuyorder
+	self.market_buy_order = function(cointype, amount, rate, markettype, callback) {
+		var data = {cointype:cointype, amount:amount, rate: rate, markettype: markettype}
 		request('/api/v2/my/buy', data, callback);
 	}
 
-	self.market_limit_sell = function(cointype, amount, rate, callback) {
+	// https://www.coinspot.com.au/v2/api#placesellorder
+	self.market_sell_order = function(cointype, amount, rate, callback) {
 		var data = {cointype:cointype, amount:amount, rate: rate}
 		request('/api/v2/my/sell', data, callback);
 	}
 
+	// https://www.coinspot.com.au/v2/api#cancelbuyorder
 	self.cancel_buy_order = function(id, callback) {
 		var data = {id:id}
 		request('/api/v2/my/buy/cancel', data, callback)
 	}
 	
+	// https://www.coinspot.com.au/v2/api#cancelsellorder
 	self.cancel_sell_order = function(id, callback) {
 		var data = {id:id}
 		request('/api/v2/my/sell/cancel', data, callback)
@@ -111,7 +129,11 @@ function coinspot(key, secret) {
 		request('/api/v2/ro/status', callback)
 	}
 
-	self.mybalances = function(callback) {
+	self.balance_of = function(callback) {
+		request('/api/v2/ro/my/balances', {}, callback);
+	}
+
+	self.my_balances = function(callback) {
 		request('/api/v2/ro/my/balances', {}, callback);
 	}
 

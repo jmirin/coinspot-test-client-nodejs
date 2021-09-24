@@ -7,10 +7,11 @@ const secret = process.env.SECRET
 
 var client = new coinspot(key, secret);
 
-client.status_ro()
+// client.status_ro()
 client.status_fa()
-client.quotebuy('HBAR', 'AUD', 6)
-client.quotesell('DOGE', 'coin', 30)
-//var rate = client.quotesell('HBAR', 'coin', 10)
-//console.log(rate)
-// client.instant_sell_now('HBAR', 'coin', 6)
+client.quotebuy('BTC', 'AUD', 10)
+client.instant_buy_now('BTC', 'AUD', '10')
+
+// skip for now
+// client.market_buy_order('BTC', 10, 'AUD')
+// client.instant_swap_now('BTC', 'ADA', )
