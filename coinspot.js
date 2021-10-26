@@ -19,11 +19,10 @@ function coinspot(key, secret) {
 		signedMessage.update(stringmessage);
 
 		var sign = signedMessage.digest('hex');
-		// console.log(sign)
-
+		
 		const options = {
 			rejectUnauthorized: false,
-			method: 'GET',
+			method: 'POST',
 			host: 'www.coinspot.com.au',
 			port: '',
 			path: path,
@@ -62,7 +61,7 @@ function coinspot(key, secret) {
 
 	// https://www.coinspot.com.au/v2/api#buynowquote
 	self.quotebuy = function(cointype, amounttype, amount, callback) {
-		request('/api/v2/quote/buy/now', {cointype:cointype, amounttype:amounttype, amount:amount}, callback);
+		request('/api/v2/quote/buy/now', {cointype:cointype, amounttype:amounttype, amount:amount}, callback); 
 	}
 
 	// https://www.coinspot.com.au/v2/api#sellnowquote
