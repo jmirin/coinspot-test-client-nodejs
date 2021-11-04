@@ -71,13 +71,15 @@ function coinspot(key, secret) {
 
 	// https://www.coinspot.com.au/v2/api#swapnowquote
 	self.quoteswap = function(cointypesell, cointypebuy, amount, callback) {
-		request('/api/v2/quote/sell/now', {cointype:cointype, amount:amount}, callback);
+		request('/api/v2/quote/swap/now', {cointype:cointype, amount:amount}, callback);
 	}
 
 	// https://www.coinspot.com.au/v2/api#placebuynoworder
-	self.instant_buy_now = function(cointype, amounttype, amount, rate, threshold, callback) {
-		var data = {cointype:cointype, amounttype:amounttype, amount:amount, rate:rate, threshold: threshold} 
+	self.instant_buy_now = function(cointype, amounttype, amount, rate, threshold, direction, callback) {
+		var data = {cointype:cointype, amounttype:amounttype, amount:amount, rate:rate, threshold: threshold, direction: direction} 
 		request('/api/v2/my/buy/now', data, callback);
+		console.log('instant_buy_now')
+		console.log(data)
 	}
 	
 	// https://www.coinspot.com.au/v2/api#placesellorder
