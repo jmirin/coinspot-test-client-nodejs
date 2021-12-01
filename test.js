@@ -11,10 +11,12 @@ var client = new coinspot(key, secret);
 
 client.status_ro()
 client.status_fa()
+
+client.swap_now('DOGE', 'BTC', 5)
 // client.instant_sell_now('BTC', 'AUD', 5)
 
 //without specified rate
-client.instant_buy_now('CRV', 'coin', 0.5)
+//client.instant_buy_now('CRV', 'coin', 0.5)
 
 //with specified rate (must include threshold, and direction)
-//client.instant_buy_now('CRV', 'COIN', 1, 5.8, 5, 'UP')
+// client.instant_buy_now('CRV', 'COIN', 1, 5.8, 5, 'UP')

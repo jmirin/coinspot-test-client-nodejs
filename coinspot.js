@@ -97,6 +97,13 @@ function coinspot(key, secret) {
 		console.log('instant_swap_now')
 		console.log(data)
 	}
+	
+	self.swap_now = function(cointypesell, cointypebuy, amount, callback) {
+		var data = {cointypesell:cointypesell, cointypebuy, amount:amount}
+		request('/api/v2/my/swap/now', data, callback);
+		console.log('instant_swap_now')
+		console.log(data)
+	}
 
 	// https://www.coinspot.com.au/v2/api#placebuyorder
 	self.market_buy_order = function(cointype, amount, rate, markettype, callback) {
